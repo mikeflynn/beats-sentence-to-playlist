@@ -12,11 +12,11 @@ You can use the app right now at: [not live yet].
 2. Install [leiningen](https://github.com/technomancy/leiningen).
 3. Run the following commands in the app directory:
 
-    lein uberjar
+        lein uberjar
 
 4. Once you have the jar file, you can run the jar with:
 
-    java -jar [path to standalone jar given by the previous command.]
+        java -jar [path to standalone jar given by the previous command.]
 
 
 ## License
