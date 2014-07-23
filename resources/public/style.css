@@ -1,0 +1,39 @@
+#sentence span {
+  font-size: 30px;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-left: 9px;
+}
+
+#sentence select {
+  color: white;
+  font-size: 30px;
+  height: 40px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+select#sentence_places {
+  background-color: #e21e3c;
+}
+
+select#sentence_activities {
+  background-color: #c32050;
+}
+
+select#sentence_people {
+  background-color: #a42164;
+}
+
+select#sentence_genres {
+  background-color: #85227a;
+}
+
+#options {
+  margin-top: 40px;
+}
+
+#new_playlist_name {
+  font-weight: bold;
+  font-style: italic;
+}
