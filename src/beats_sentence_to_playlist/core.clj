@@ -1,4 +1,5 @@
 (ns beats-sentence-to-playlist.core
+  (:gen-class :main true)
   (:use [org.httpkit.server :only [run-server]]
         [compojure.core :only [defroutes GET POST context]]
         [compojure.handler :only [site]])
@@ -108,7 +109,7 @@
 (defn -main
   [& args]
   (let [args (if (nil? args) [] args)
-        port (if (in-dev? args) 5000 80)
+        port (if (in-dev? args) 5000 8080)
         handler (site all-routes)]
     (when (in-dev? args)
           (println (str "Server running on http://localhost:" port)))

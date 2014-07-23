@@ -105,7 +105,7 @@ var dropOverlay = function() {
 
 var hasAuth = function() {
   var auth = getAuthCache();
-  if(auth.token && Date.now() < auth.expires) {
+  if(auth && auth.token && Date.now() < auth.expires) {
     return true;
   }
 

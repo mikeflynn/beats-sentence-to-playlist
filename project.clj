@@ -10,4 +10,5 @@
                  [ring/ring-core "1.1.8"]
                  [http-kit "2.1.16"]
                  [cheshire "5.0.2"]]
-  :main beats-sentence-to-playlist.core)
+  :main beats-sentence-to-playlist.core
+  :aot :all)
