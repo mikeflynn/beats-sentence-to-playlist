@@ -21,6 +21,6 @@ You can use the app right now at: [not live yet].
 
 ## License
 
-Copyright © 2014 FIXME
+Copyright © 2014 Mike Flynn
 
 Distributed under the Eclipse Public License, the same as Clojure.
