@@ -1,4 +1,4 @@
-(defproject beats-sentence-to-playlist "0.1.0-SNAPSHOT"
+(defproject beats-sentence-to-playlist "0.9"
   :description "FIXME: write description"
   :url "http://example.com/FIXME"
   :aot :all
