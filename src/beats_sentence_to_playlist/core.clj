@@ -18,8 +18,8 @@
         (println (str "Server " n " parameter not set! Defaulting to " d))
         d))))
 
-(def beats-api-key (get-param "BEATS-API-KEY" false))
-(def beats-api-secret (get-param "BEATS-API-SECRET" false))
+(def beats-api-key (get-param "BEATS_API_KEY" false))
+(def beats-api-secret (get-param "BEATS_API_SECRET" false))
 
 (beats/set-app-key! beats-api-key)
 (beats/set-app-secret! beats-api-secret)
