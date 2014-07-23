@@ -9,8 +9,17 @@
             [clojure.java.io :as io]
             [beats-clj.core :as beats]))
 
-(def beats-api-key "qa4tvmpj822938b7bnv77r9j")
-(def beats-api-secret "8ungESPtpFDf7Ar5e4P6vw3B")
+(defn get-param [n d]
+  (let [system_env (System/getenv n)
+        system_prop (System/getProperty n)]
+    (if-let [param (if system_env system_env system_prop)]
+      param
+      (do
+        (println (str "Server " n " parameter not set! Defaulting to " d))
+        d))))
+
+(def beats-api-key (get-param "BEATS-API-KEY" false))
+(def beats-api-secret (get-param "BEATS-API-SECRET" false))
 
 (beats/set-app-key! beats-api-key)
 (beats/set-app-secret! beats-api-secret)
