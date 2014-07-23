@@ -1,10 +1,23 @@
-# beats-sentence-to-playlist
+# `beats-sentence-to-playlist`
 
-A Clojure library designed to ... well, that part is up to you.
+A Clojure and Javascript (ReactJS) web application that allows the user to create playlists on the Beats Music platform from the "Sentence" feature. Primarily, this allows the user to make that playlist available offline.
 
-## Usage
+## Live Version
 
-FIXME
+You can use the app right now at: [not live yet].
+
+## Run Your Own Copy
+
+1. Clone the repo.
+2. Install [leiningen](https://github.com/technomancy/leiningen).
+3. Run the following commands in the app directory:
+
+    lein uberjar
+
+4. Once you have the jar file, you can run the jar with:
+
+    java -jar [path to standalone jar given by the previous command.]
+
 
 ## License
 
