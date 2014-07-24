@@ -40,6 +40,12 @@
     (:data resp)
     false))
 
+(defn get-playlists
+  [user-id token]
+  (if-let [resp (beats/playlist-list user-id :auth token)]
+    (:data resp)
+    false))
+
 (defn create-playlist
   [user-id token title place activity people genre & {:keys [total]
                                                       :or {total 20}}]
@@ -55,6 +61,12 @@
                           (into [])
                           ((fn [tracks] (beats/playlist-add playlist-id tracks :auth token :mode :append :async false))))]
           {:playlist title :status status})))
+
+(defn delete-playlist
+  [playlist-id token]
+  (if-let [resp (beats/playlist-delete playlist-id :auth token)]
+    {:result resp}
+    {:error "Couldn't remove playlist."}))
 
 (def std-response {:status 200
                    :headers {"Content-Type" "application/json"}})
@@ -99,6 +111,18 @@
                                   (:genreid params)
                                   :total (Integer/parseInt (:total params 20)))
                  (catch Exception e {:error (.getMessage e)})))
+           json/generate-string
+           (assoc std-response :body)))
+    (GET "/playlist/list" {params :params}
+      (->> (if (or (not (:userid params)) (not (:token params)))
+               {:error "Missing required params."}
+               (get-playlists (:userid params) (:token params)))
+           json/generate-string
+           (assoc std-response :body)))
+    (POST "/playlist/delete" {params :params}
+      (->> (if (or (not (:playlistid params)) (not (:token params)))
+              {:error "Missing required params."}
+              (delete-playlist (:playlistid params) (:token params)))
            json/generate-string
            (assoc std-response :body))))
   (route/resources "/")
