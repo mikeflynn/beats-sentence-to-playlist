@@ -84,13 +84,19 @@ var getUri = function() {
 
 var handleResponse = function() {
   if(getParam('state') !== null) {
+    toggleLoading();
     var params = {code: getParam('code'), callback: getUri()};
     jQuery.post('/api/token', params, function(resp) {
-      console.log(resp);
       if(window.localStorage) {
         if(resp.token) {
           resp.expires = Date.now() + 3600000;
           window.localStorage.setItem('auth', JSON.stringify(resp));
+
+          if(window.history) {
+            history.pushState({}, "Create", "/");
+          }
+
+          toggleLoading();
           dropOverlay();
         }
       }
@@ -116,6 +122,17 @@ var getAuthCache = function() {
   return JSON.parse(window.localStorage.getItem('auth'));
 };
 
+var toggleLoading = function() {
+  if(jQuery('#loading').length === 0) {
+    var loading = jQuery('<div id="loading"></div>').appendTo('body');
+    loading.show();
+  } else {
+    var loading = jQuery('#loading');
+    loading.hide();
+    loading.remove();
+  }
+};
+
 var startRender = function() {
   React.renderComponent(Sentence(), document.getElementById('main'));
   jQuery('#createBtn').click(function() {
@@ -133,11 +150,17 @@ var startRender = function() {
     var title = jQuery('#playlistName').val();
     if(title) { params.title = title; }
 
+    toggleLoading();
     jQuery.post('/api/save', params, function(resp) {
       if(resp.playlist) {
         jQuery('#new_playlist_name').text(resp.playlist);
-        jQuery('#completeModal').modal();
+      } else {
+        jQuery('#new_playlist_name .modal-title').text('Error');
+        jQuery('#new_playlist_name .modal-body').text(resp.error);
+        jQuery('#new_playlist_name .btn').text('Try Again');
       }
+      toggleLoading();
+      jQuery('#completeModal').modal();
     }, "json");
   });
 };
