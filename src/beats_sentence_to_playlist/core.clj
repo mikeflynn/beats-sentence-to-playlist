@@ -102,15 +102,8 @@
   (route/resources "/")
   (route/not-found "<p>404: Page not found.</p>"))
 
-(defn in-dev?
-  [args]
-  (> (.indexOf args "dev") -1))
-
 (defn -main
   [& args]
-  (let [args (if (nil? args) [] args)
-        port (if (in-dev? args) 5000 8080)
+  (let [port (if (first args) (Integer/parseInt (first args)) 8080)
         handler (site all-routes)]
-    (when (in-dev? args)
-          (println (str "Server running on http://localhost:" port)))
     (run-server handler {:port port})))
