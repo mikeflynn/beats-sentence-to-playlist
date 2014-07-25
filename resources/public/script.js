@@ -1,5 +1,76 @@
 /** @jsx React.DOM */
 
+var Playlists = React.createClass({displayName: 'Playlists',
+  getInitialState: function() {
+    return {list: []};
+  },
+  componentDidMount: function() {
+    var auth = getAuthCache();
+    var params = {userid: auth.userid, token: auth.token};
+    toggleLoading();
+    jQuery.getJSON('/api/playlist/list', params, function(resp) {
+      if (this.isMounted()) {
+        this.setState({list: resp});
+        toggleLoading();
+      }
+    }.bind(this));
+  },
+  removePlaylist: function(pid) {
+    if(confirm('Are you sure you want to delete this playlist? It can not be undone.')) {
+      jQuery('li#'+pid).css({opacity: '.25'});
+
+      var $this = this;
+      var auth = getAuthCache();
+      var params = {playlistid: pid, token: auth.token};
+      jQuery.post('/api/playlist/delete', params, function(resp) {
+        if(resp.result) {
+          var list = $this.state.list.filter(function(e) {
+            return (e.id != pid);
+          });
+
+          $this.setState({list: list});
+        }
+
+        jQuery('li').css({opacity: '1'});
+      });
+    }
+  },
+  render: function() {
+    var $this = this;
+    var playlists = this.state.list.map(function(row, i) {
+      return PlaylistItem( {key:i, data:row, onClick:$this.removePlaylist} )
+    });
+
+    return (
+      React.DOM.ul( {id:"playlists", className:"list-group"}, 
+        playlists
+      )
+    );
+  }
+});
+
+var PlaylistItem = React.createClass({displayName: 'PlaylistItem',
+  render: function() {
+    var desc = '';
+    if(this.props.data.description != '') {
+      desc = '/ ' + this.props.data.description;
+    }
+
+    var date = new Date(this.props.data.updated_at * 1000);
+    var updated_on = (date.getMonth() + 1) + '/' + date.getDate() + '/' + (date.getYear() + 1900) ;
+
+    return (
+      React.DOM.li( {className:"list-group-item", id:this.props.data.id}, 
+        React.DOM.button( {type:"button", className:"delPlaylist btn btn-default", onClick:this.props.onClick.bind(this, this.props.data.id)}, 
+          React.DOM.span( {className:"glyphicon glyphicon-trash"})
+        ),
+        this.props.data.name, " ", React.DOM.span( {className:"desc"}, desc),
+        React.DOM.i(null, this.props.data.total_tracks, " tracks and last updated on ", updated_on,".")
+      )
+    )
+  }
+});
+
 var Sentence = React.createClass({displayName: 'Sentence',
   getInitialState: function() {
     return {
@@ -91,7 +162,11 @@ var handleResponse = function() {
         if(resp.token) {
           resp.expires = Date.now() + 3600000;
           window.localStorage.setItem('auth', JSON.stringify(resp));
-          history.pushState({}, "Create", "/");
+
+          if(window.history) {
+            history.pushState({}, "Create", getUri());
+          }
+
           toggleLoading();
           dropOverlay();
         }
@@ -130,35 +205,39 @@ var toggleLoading = function() {
 };
 
 var startRender = function() {
-  React.renderComponent(Sentence(), document.getElementById('main'));
-  jQuery('#createBtn').click(function() {
-    var auth = getAuthCache();
-    var params = {
-      userid: auth.userid,
-      token: auth.token,
-      placeid: jQuery('#sentence_places').val(),
-      activityid: jQuery('#sentence_activities').val(),
-      peopleid: jQuery('#sentence_people').val(),
-      genreid: jQuery('#sentence_genres').val(),
-      total: jQuery('#playlistCount').val()
-    };
+  if(window.pageName === 'main') {
+    React.renderComponent(Sentence(), document.getElementById('main'));
+    jQuery('#createBtn').click(function() {
+      var auth = getAuthCache();
+      var params = {
+        userid: auth.userid,
+        token: auth.token,
+        placeid: jQuery('#sentence_places').val(),
+        activityid: jQuery('#sentence_activities').val(),
+        peopleid: jQuery('#sentence_people').val(),
+        genreid: jQuery('#sentence_genres').val(),
+        total: jQuery('#playlistCount').val()
+      };
 
-    var title = jQuery('#playlistName').val();
-    if(title) { params.title = title; }
+      var title = jQuery('#playlistName').val();
+      if(title) { params.title = title; }
 
-    toggleLoading();
-    jQuery.post('/api/save', params, function(resp) {
-      if(resp.playlist) {
-        jQuery('#new_playlist_name').text(resp.playlist);
-      } else {
-        jQuery('#new_playlist_name .modal-title').text('Error');
-        jQuery('#new_playlist_name .modal-body').text(resp.error);
-        jQuery('#new_playlist_name .btn').text('Try Again');
-      }
       toggleLoading();
-      jQuery('#completeModal').modal();
-    }, "json");
-  });
+      jQuery.post('/api/save', params, function(resp) {
+        if(resp.playlist) {
+          jQuery('#new_playlist_name').text(resp.playlist);
+        } else {
+          jQuery('#new_playlist_name .modal-title').text('Error');
+          jQuery('#new_playlist_name .modal-body').text(resp.error);
+          jQuery('#new_playlist_name .btn').text('Try Again');
+        }
+        toggleLoading();
+        jQuery('#completeModal').modal();
+      }, "json");
+    });
+  } else if (window.pageName === 'playlists') {
+    React.renderComponent(Playlists(), document.getElementById('main'));
+  }
 };
 
 if(!Date.now) {

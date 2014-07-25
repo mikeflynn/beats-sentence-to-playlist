@@ -76,6 +76,8 @@
     (io/resource "public/index.html"))
   (GET "/about" []
     (io/resource "public/about.html"))
+  (GET "/playlists" []
+    (io/resource "public/playlists.html"))
   (context "/api" []
     (GET "/init" {params :params}
       (->> {:key beats-api-key}

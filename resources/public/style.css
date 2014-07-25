@@ -48,3 +48,23 @@ select#sentence_genres {
   z-index: 9999999;
   background: #000 url('/img/loading.gif') center center no-repeat;
 }
+
+#playlists li {
+  overflow: auto;
+  font-size: 18px;
+}
+
+#playlists li .desc {
+  font-size: 14px;
+  color: #999;
+}
+
+#playlists li button {
+  float: right;
+}
+
+#playlists li i {
+  display: block;
+  font-style: italic;
+  font-size: 10px;
+}
