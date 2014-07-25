@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Sentence Saver for Beats Music</title>
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+  <script src="/react.js"></script>
+  <script src="/script.js"></script>
+
+  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="/style.css">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- iOS Stuff -->
+  <link rel="apple-touch-icon" href="/img/touch-icon-iphone.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/touch-icon-ipad.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/img/touch-icon-iphone-retina.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/img/touch-icon-ipad-retina.png">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="apple-touch-startup-image" href="/img/startup.png">
+</head>
+<body>
+  <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#"><img src="/img/small_beats_logo.png"> Beats Sentence Saver</a>
+      </div>
+
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li><a href="/">Create</a></li>
+          <li class="active"><a href="/playlists">Playlists</a></li>
+          <li><a href="/about">About</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-8" id="main">
+      </div>
+      <div class="col-md-4">
+        <p>You've made a bunch of playlists and more than a few aren't worth holding on to any more, right? Maybe a few playlists from this app that you've listened to and now you're done with them...but...there's no way to delete them! Not on the Beats site and not on the Beats app!<p>
+        <p>Settle down.</p>
+        <p>We got you.</p>
+        <p>All of your playlists are in this big list. Click the trash icon by any of them and we'll whisk them away to that great pile of playlists in the sky next to all those Fergie songs you were convinced totally didn't suck back in the day.</p>
+      </div>
+    </div>
+    <div id="overlay">
+      <div id="overlay-modal" class="modal fade in" data-backdrop="static" data-keyboard="false" data-show="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Sentence Saver for Beats Music</h4>
+            </div>
+            <div class="modal-body">
+              <p>We need you to login with your Beats Music account before we can get started.</p>
+              <p>No need to worry though, we don't store or even care about any of your information. Just click the button below to authorize us to create playlists for you.</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" id="authBtn">Log in with Beats</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="completeModal" class="modal fade" data-backdrop="static" data-keyboard="false" data-show="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">All done!</h4>
+        </div>
+        <div class="modal-body">
+          <p>Your playlist, <span id="new_playlist_name"></span>, has been created.</p>
+          <p>It will be available in the Beats Music app right away. Don't forget to mark it for offline play!</p>
+        </div>
+        <div class="modal-footer">
+          <a href="/" class="btn btn-danger btn-lg" role="button">Create Another?</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- iOS Web App link fix -->
+<script type="text/javascript">
+(function(document,navigator,standalone) {
+  if (standalone in navigator && navigator[standalone]) {
+    var curnode,location=document.location,stop=/^(a|html)$/i;
+    document.addEventListener("click", function(e) {
+      curnode=e.target;
+      while (!stop.test(curnode.nodeName)) {
+        curnode=curnode.parentNode;
+      }
+      if ("href" in curnode && (curnode.href.indexOf("http") || ~curnode.href.indexOf(location.host)) && curnode.target == false) {
+        e.preventDefault();
+        location.href=curnode.href
+      }
+    },false);
+  }
+})(document,window.navigator,"standalone");
+var pageName = 'playlists';
+</script>
+</body>
+</html>
