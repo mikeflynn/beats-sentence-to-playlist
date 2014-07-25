@@ -1,4 +1,4 @@
-(defproject beats-sentence-to-playlist "0.9.6"
+(defproject beats-sentence-to-playlist "1.0"
   :description "FIXME: write description"
   :url "http://example.com/FIXME"
   :license {:name "Eclipse Public License"
