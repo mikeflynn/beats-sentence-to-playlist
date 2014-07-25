@@ -51,7 +51,9 @@
                                                       :or {total 20}}]
   (let [total (if (< total 10) 10 total)
         total (if (> total 100) 100 total)
-        playlist-id (-> (beats/playlist-create title :auth token)
+        desc (str "Created by the Beats Sentence Saver.")
+        playlist-id (-> (beats/playlist-create title :auth token
+                                                     :description desc)
                         (get-in [:data :id]))]
         (when (nil? playlist-id) (throw (Exception. "Unable to create playlist.")))
         (let [status (->> (repeat (quot total 10) "x")
