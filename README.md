@@ -4,7 +4,7 @@ A Clojure and Javascript (ReactJS) web application that allows the user to creat
 
 ## Live Version
 
-You can use the app right now at: [not live yet].
+You can use the app right now at: [bit.ly/sentencesaver](http://bit.ly/sentencesaver).
 
 ## Run Your Own Copy
 
