@@ -6,6 +6,14 @@ A Clojure and Javascript (ReactJS) web application that allows the user to creat
 
 You can use the app right now at: [bit.ly/sentencesaver](http://bit.ly/sentencesaver).
 
+## Screenshots
+
+![iOS web app icon](/mikeflynn/beats-sentence-to-playlist/blob/master/docs/sentence_saver_001.jpg)
+![OAuth screen](/mikeflynn/beats-sentence-to-playlist/blob/master/docs/sentence_saver_002.jpg)
+![Create screen](/mikeflynn/beats-sentence-to-playlist/blob/master/docs/sentence_saver_003.jpg)
+![Create success](/mikeflynn/beats-sentence-to-playlist/blob/master/docs/sentence_saver_004.jpg)
+![Playlist editor](/mikeflynn/beats-sentence-to-playlist/blob/master/docs/sentence_saver_005.jpg)
+
 ## Run Your Own Copy
 
 1. Clone the repo.
