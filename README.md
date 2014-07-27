@@ -8,11 +8,11 @@ You can use the app right now at: [bit.ly/sentencesaver](http://bit.ly/sentences
 
 ## Screenshots
 
-![iOS web app icon](/docs/sentence_saver_001.jpeg)
-![OAuth screen](/docs/sentence_saver_002.jpeg)
-![Create screen](/docs/sentence_saver_003.jpeg)
-![Create success](/docs/sentence_saver_004.jpeg)
-![Playlist editor](/docs/sentence_saver_005.jpeg)
+* [iOS web app icon](/doc/sentence_saver_001.jpeg)
+* [OAuth screen](/doc/sentence_saver_002.jpg)
+* [Create screen](/doc/sentence_saver_003.jpg)
+* [Create success](/doc/sentence_saver_004.jpg)
+* [Playlist editor](/doc/sentence_saver_005.jpg)
 
 ## Run Your Own Copy
 
