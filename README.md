@@ -8,11 +8,11 @@ You can use the app right now at: [bit.ly/sentencesaver](http://bit.ly/sentences
 
 ## Screenshots
 
-![iOS web app icon](/mikeflynn/beats-sentence-to-playlist/blob/master/docs/sentence_saver_001.jpeg)
-![OAuth screen](/mikeflynn/beats-sentence-to-playlist/blob/master/docs/sentence_saver_002.jpeg)
-![Create screen](/mikeflynn/beats-sentence-to-playlist/blob/master/docs/sentence_saver_003.jpeg)
-![Create success](/mikeflynn/beats-sentence-to-playlist/blob/master/docs/sentence_saver_004.jpeg)
-![Playlist editor](/mikeflynn/beats-sentence-to-playlist/blob/master/docs/sentence_saver_005.jpeg)
+![iOS web app icon](/docs/sentence_saver_001.jpeg)
+![OAuth screen](/docs/sentence_saver_002.jpeg)
+![Create screen](/docs/sentence_saver_003.jpeg)
+![Create success](/docs/sentence_saver_004.jpeg)
+![Playlist editor](/docs/sentence_saver_005.jpeg)
 
 ## Run Your Own Copy
 
