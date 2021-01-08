@@ -1,3 +1,9 @@
+## Update - 2021.01.08
+
+_RIP Beats. This repo has been archived._
+
+_Original README follows..._
+
 # `beats-sentence-to-playlist`
 
 A Clojure and Javascript (ReactJS) web application that allows the user to create playlists on the Beats Music platform from the "Sentence" feature. Primarily, this allows the user to make that playlist available offline.
